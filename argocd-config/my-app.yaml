@@ -1,0 +1,24 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: my-app
+  namespace: argocd
+spec:
+  # Every ArgoCD Application belong to a Project
+  project: default
+  source:
+    repoURL: https://github.com/othmane-elgoubi/practice-devops.git
+    targetRevision: HEAD
+    path: my-app/dev # Path to the application manifests
+    targetRevision: 'main'
+  destination: # Local cluster is the destination
+    server: https://kubernetes.default.svc
+    namespace: my-app
+  
+  syncPolicy:
+    syncOptions: # Allow ns creation
+    - CreateNamespace=true
+
+    automated: # Enable automated Syncing ( 3min by default ) and override any manual changes
+      selfHeal: true
+      prune: true # If we delete a resource or manifest in git : it should be deleted
