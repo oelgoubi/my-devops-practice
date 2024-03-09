@@ -8,7 +8,7 @@ spec:
   project: default
   source:
     repoURL: https://github.com/oelgoubi/my-devops-practice.git
-    path: my-app/dev # Path to the application manifests
+    path: argocd-practice/journey-1/my-app/dev # Path to the application manifests
     targetRevision: 'main'
   destination: # Local cluster is the destination
     server: https://kubernetes.default.svc
