@@ -1,0 +1,25 @@
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: aws-test # That will use aws role
+  annotations: # Thanks to this we can use the IAM role in the pod
+    eks.amazonaws.com/role-arn: arn:aws:iam::798277392436:role/test-oidc 
+  namespace: default
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: aws-cli
+  namespace: default
+spec:
+  serviceAccountName: aws-test
+  containers:
+  - name: aws-cli
+    image: amazon/aws-cli
+    command: [ "/bin/bash", "-c", "--" ]
+    args: [ "while true; do sleep 30; done;" ]
+  tolerations:
+  - operator: Exists
+    effect: NoSchedule
+# Test OIDC:  kubectl exec aws-cli -- aws s3api list-buckets
