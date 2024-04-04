@@ -1,0 +1,17 @@
+
+
+- Setup infrastructure resources on aws to prepare for eks cluster creation
+
+- Create IAM role with policy needed and create eks cluster and nodes
+    # aws eks describe-addon-versions --kubernetes-version 1.24 |jq '.addons[].addonName'
+    - Get cluster credentials and update kube config file 
+    # aws eks --region us-east-1 update-kubeconfig --name main --profile $AWS_PROFILE
+
+- Create OIDC to allow k8s resources to interact with aws services 
+- Test OIDC by creating a pod and attach a serviceaccount to it (check file k8s/aws-test-oidc.yml)
+    # kubectl apply -f k8s/aws-test-oidc.yml
+    # kubectl exec aws-cli -- aws s3api list-buckets
+- Install needed addons
+
+- Install ArgoCD Agent 
+
