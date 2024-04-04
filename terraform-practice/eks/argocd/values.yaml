@@ -1,0 +1,8 @@
+---
+global:
+  image:
+    tag: "v2.6.6" # Argocd application used in the ArgoCD chart
+
+server:
+  extraArgs:
+    - --insecure # disbale tls because we will be using Ingress in front of our argocd server
