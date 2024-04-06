@@ -1,16 +1,16 @@
-provider "helm" {
-  # Connect to Kubentetes cluster by getting a token using aws cli
-  kubernetes {
-    host                   = aws_eks_cluster.compute.endpoint
-    cluster_ca_certificate = base64decode(aws_eks_cluster.compute.certificate_authority[0].data)
-    exec {
-      api_version = "client.authentication.k8s.io/v1beta1"
-      args        = ["eks", "get-token", "--profile", "myadmin-aws-account", "--cluster-name", aws_eks_cluster.compute.id]
-      command     = "aws"
+# provider "helm" {
+#   # Connect to Kubentetes cluster by getting a token using aws cli
+#   kubernetes {
+#     host                   = aws_eks_cluster.compute.endpoint
+#     cluster_ca_certificate = base64decode(aws_eks_cluster.compute.certificate_authority[0].data)
+#     exec {
+#       api_version = "client.authentication.k8s.io/v1beta1"
+#       args        = ["eks", "get-token", "--profile", "myadmin-aws-account", "--cluster-name", aws_eks_cluster.compute.id]
+#       command     = "aws"
 
-    }
-  }
-}
+#     }
+#   }
+# }
 
 
 # Deploy the helm chart for the AWS Load Balancer Controller

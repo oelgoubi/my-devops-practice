@@ -24,7 +24,7 @@ resource "aws_iam_role" "aws_load_balancer_controller" {
 }
 # Create a Policy that allows the AWS Load Balancer Controller ServiceAccount to manage AWS resources
 resource "aws_iam_policy" "aws_load_balancer_controller" {
-  policy = file("./AWSLoadBalancerController.json")
+  policy = file("./static/AWSLoadBalancerController.json")
   name   = "AWSLoadBalancerController"
 }
 

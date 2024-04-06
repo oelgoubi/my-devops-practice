@@ -1,3 +1,4 @@
+# After applying : a dns record should be created in routes53 and mapped with 
 ---
 apiVersion: v1
 kind: Namespace
