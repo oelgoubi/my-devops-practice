@@ -181,3 +181,4 @@ argocd-login.txt
 change-authorgit.sh
 argocd-practice/journey-2/argocd-config/git-repo-secret.yaml
 terraform-practice/eks/0-provider.tf
+terraform-practice/eks/argocd/apps/app-1/git-repo-secret.yaml
