@@ -1,0 +1,36 @@
+  apiVersion: networking.k8s.io/v1
+  kind: Ingress
+  metadata:
+    annotations:
+      alb.ingress.kubernetes.io/backend-protocol: HTTP # Our Service is listening on HTTP PORT
+      # Use this annotation (which must match a service name) to route traffic to HTTP2 backends.
+      alb.ingress.kubernetes.io/conditions.argogrpc: |
+        [{"field":"http-header","httpHeaderConfig":{"httpHeaderName": "Content-Type", "values":["application/grpc"]}}]
+      alb.ingress.kubernetes.io/listen-ports: '[{"HTTPS":443}]'
+      alb.ingress.kubernetes.io/scheme: internet-facing
+      alb.ingress.kubernetes.io/target-type: 'ip'
+    name: argocd
+    namespace: argocd
+  spec:
+    ingressClassName: alb
+    rules:
+    - host: test.beek-dev.com
+      http:
+        paths:
+        - path: /
+          backend:
+            service:
+              name: argogrpc
+              port:
+                number: 443
+          pathType: Prefix
+        - path: /
+          backend:
+            service:
+              name: argocd-server
+              port:
+                number: 443
+          pathType: Prefix
+    tls:
+    - hosts:
+      - test.beek-dev.com
