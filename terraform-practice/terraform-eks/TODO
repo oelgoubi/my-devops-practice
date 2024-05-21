@@ -11,7 +11,17 @@
 - Test OIDC by creating a pod and attach a serviceaccount to it (check file k8s/aws-test-oidc.yml)
     # kubectl apply -f k8s/aws-test-oidc.yml
     # kubectl exec aws-cli -- aws s3api list-buckets
-- Install needed addons
 
-- Install ArgoCD Agent 
+- Install ArgoCD Agent & make a Argo test App ( check k8s/config )
+
+- Install AWS Load Balancer Controller 
+
+- Create Ingress to expose ArgoCD Server + Add SSL Certificate to activate HTTP server
+
+
+- Install external-dns / and certManager to handle external DNS creation and certificate ssl renewal
+
+- Install monitoring tools (Prometheus, Grafana, metrics-server)
+
+- Install needed addons
 
