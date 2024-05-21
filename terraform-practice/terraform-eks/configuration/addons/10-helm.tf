@@ -14,39 +14,39 @@ provider "helm" {
 
 
 # Deploy the helm chart for the AWS Load Balancer Controller
-resource "helm_release" "aws-load-balancer-controller" {
-  name = "aws-load-balancer-controller"
+# resource "helm_release" "aws-load-balancer-controller" {
+#   name = "aws-load-balancer-controller"
 
-  repository = "https://aws.github.io/eks-charts"
-  chart      = "aws-load-balancer-controller"
-  namespace  = "kube-system"
-  version    = "1.4.1"
-  # Set the cluster name and the tag for the AWS Load Balancer Controller
-  set {
-    name  = "clusterName"
-    value = aws_eks_cluster.compute.id
-  }
+#   repository = "https://aws.github.io/eks-charts"
+#   chart      = "aws-load-balancer-controller"
+#   namespace  = "kube-system"
+#   version    = "1.4.1"
+#   # Set the cluster name and the tag for the AWS Load Balancer Controller
+#   set {
+#     name  = "clusterName"
+#     value = aws_eks_cluster.compute.id
+#   }
 
-  set {
-    name  = "image.tag"
-    value = "v2.4.2"
-  }
-  # Attach the service account to the helm chart because this SA has the necessary permissions to manage the AWS resources
-  set {
-    name  = "serviceAccount.name"
-    value = "aws-load-balancer-controller"
-  }
-  # Set the role ARN for the AWS Load Balancer Controller ServiceAccount 
-  set {
-    name  = "serviceAccount.annotations.eks\\.amazonaws\\.com/role-arn"
-    value = aws_iam_role.aws_load_balancer_controller.arn
-  }
+#   set {
+#     name  = "image.tag"
+#     value = "v2.4.2"
+#   }
+#   # Attach the service account to the helm chart because this SA has the necessary permissions to manage the AWS resources
+#   set {
+#     name  = "serviceAccount.name"
+#     value = "aws-load-balancer-controller"
+#   }
+#   # Set the role ARN for the AWS Load Balancer Controller ServiceAccount 
+#   set {
+#     name  = "serviceAccount.annotations.eks\\.amazonaws\\.com/role-arn"
+#     value = aws_iam_role.aws_load_balancer_controller.arn
+#   }
 
-  depends_on = [
-    aws_eks_node_group.private-nodes,
-    aws_iam_role_policy_attachment.aws_load_balancer_controller_attach
-  ]
-}
+#   depends_on = [
+#     aws_eks_node_group.private-nodes,
+#     aws_iam_role_policy_attachment.aws_load_balancer_controller_attach
+#   ]
+# }
 
 
 # resource "helm_release" "external_dns" {

@@ -44,3 +44,5 @@ resource "aws_eks_cluster" "compute" {
   # Make sure to create IAM role with AmazonEKSClusterPolicy first
   depends_on = [aws_iam_role_policy_attachment.eks-role-AmazonEKSClusterPolicy]
 }
+
+## self managed should use aws-auth.conf
