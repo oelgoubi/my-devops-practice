@@ -5,7 +5,7 @@
 resource "aws_subnet" "private-us-east-1a" {
   vpc_id            = aws_vpc.compute.id
   cidr_block        = "10.0.0.0/24"
-  availability_zone = "${var.aws_az1_region}"
+  availability_zone = var.aws_az1_region
 
   # Tags are important and will be used by the ALB Controller to identify the subnets and create private ALBs
   tags = {
@@ -18,7 +18,7 @@ resource "aws_subnet" "private-us-east-1a" {
 resource "aws_subnet" "private-us-east-1b" {
   vpc_id            = aws_vpc.compute.id
   cidr_block        = "10.0.1.0/24"
-  availability_zone = "${var.aws_az2_region}"
+  availability_zone = var.aws_az2_region
 
   tags = {
     "Name"                                      = "private-us-east-1b"
@@ -30,7 +30,7 @@ resource "aws_subnet" "private-us-east-1b" {
 resource "aws_subnet" "public-us-east-1a" {
   vpc_id            = aws_vpc.compute.id
   cidr_block        = "10.0.2.0/24"
-  availability_zone = "${var.aws_az1_region}"
+  availability_zone = var.aws_az1_region
 
   ## To create Public k8s instances groups
   # map_public_ip_on_launch = true
@@ -46,7 +46,7 @@ resource "aws_subnet" "public-us-east-1a" {
 resource "aws_subnet" "public-us-east-1b" {
   vpc_id            = aws_vpc.compute.id
   cidr_block        = "10.0.3.0/24"
-  availability_zone = "${var.aws_az2_region}"
+  availability_zone = var.aws_az2_region
 
   ## To create Public k8s instances groups but we don't need it because we will use ALB to expose our cluster
   # map_public_ip_on_launch = true

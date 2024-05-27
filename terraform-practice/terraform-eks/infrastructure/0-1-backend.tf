@@ -1,6 +1,6 @@
 # # Create a S3 bucket to store the terraform state named devops-directive-tf-state
 resource "aws_s3_bucket" "terraform_state" {
-  bucket = "devops-directive-tf-state-othmane"
+  bucket        = "devops-directive-tf-state-othmane"
   force_destroy = true
   lifecycle {
     prevent_destroy = true
