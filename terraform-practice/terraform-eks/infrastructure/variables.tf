@@ -48,3 +48,13 @@ variable "external_dns_zoneType" {
   type        = string
   default     = ""
 }
+
+variable "secret_key" {
+  description = "AWS secret key"
+  sensitive   = true
+}
+
+variable "access_key" {
+  description = "AWS acces key"
+  sensitive   = false
+}
