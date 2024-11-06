@@ -17,7 +17,7 @@ resource "aws_iam_role" "eks_cluster_role" {
 
 # Attach the Amazon EKS cluster policy to the EKS cluster role
 resource "aws_iam_role_policy_attachment" "eks_cluster_role_policy" {
-    policy_arn = "arn:aws:iam::aws:policy/AmazonEKSCluster"
+    policy_arn = "arn:aws:iam::aws:policy/AmazonEKSClusterPolicy"
     role       = aws_iam_role.eks_cluster_role.name
 }
 

@@ -18,9 +18,9 @@ resource "aws_eks_node_group" "eks_nodes" {
 
     # specify the initial & maximum & desired number of nodes
     scaling_config {
-        min_size     = each.value.min_size
-        max_size     = each.value.max_size
-        desired_size = each.value.desired_size
+        min_size     = each.value.scaling_config.min_size
+        max_size     = each.value.scaling_config.max_size
+        desired_size = each.value.scaling_config.desired_size
     }
 
     update_config {

@@ -16,13 +16,13 @@ variable "eks_version" {
 variable "endpoint_private_access" {
   description = "Whether the EKS cluster should have private access to the API server"
   type        = bool
-  default     = true
+  default     = false
 }
 
 variable "endpoint_public_access" {
   description = "Whether the EKS cluster should have public access to the API server"
   type        = bool
-  default     = false
+  default     = true
 }
 
 variable "subnet_ids" {
