@@ -5,10 +5,10 @@ This is the second version of the infrastructure live using modules (like VPC, E
 - Update the kubeconfig for the EKS cluster in the local machine
 - Update the AWS profile to be used in the project
 
-## Steps to run the project
+## Steps to run the project on dev environment
 
 ```bash
-cd aws-cloud-architect-training/infra-live-v2
+cd aws-cloud-architect-training/infra-live-v2/dev
 ```
 
 2. Initialize the modules
