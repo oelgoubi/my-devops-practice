@@ -1,0 +1,48 @@
+
+
+# Terraform State & Locking State
+- Setup s3 bucket for terraform state (with versioning and encryption)
+- Setup DynamoDB table for terraform state locking
+
+# Create IAM Role and Policy to allow users to assume that role
+- Create IAM Role "terraform" (AdministratorAccess) that can be assumed by users and also by services like 
+  github actions to deploy terraform code
+- Create IAM Policy "allowTerraform" that allows users/entities to assume the "terraform" role
+```json
+{
+	"Version": "2012-10-17",
+	"Statement": [
+		{
+			"Sid": "VisualEditor0",
+			"Effect": "Allow",
+			"Action": "sts:AssumeRole",
+			"Resource": "arn:aws:iam::798277392436:role/terraform"
+		}
+	]
+}
+```
+# Create AWS User Group and assign the Policy to it
+- Create User Group "devops" and attach the "allowTerraform" policy to it
+NB: Any user with AdministratorAccess can assume the "terraform" role
+# Add a User to the "devops" group 
+- Create User "wise" and add it to the "devops" group
+
+# Connect with "wise" user and assume the role 
+
+# Init state
+cd infra-iso-prod-live/dev
+terragrunt run-all init
+
+# OIDC provider needs a running k8s cluster to run a plan : so we skip it
+terragrunt run-all plan  --terragrunt-exclude-dir kubernetes-addons/
+
+# Launch Infra creation 
+terragrunt run-all apply
+
+# Get kubeconfig file 
+aws eks --region eu-west-3 update-kubeconfig --name dev-demo --profile $AWS_PROFILE --kubeconfig ~/.kube/dev-demo 
+ 
+# Check access to kubernetes cluster
+kubectl get nodes --kubeconfig ~/.kube/demo-eks
+
+# TODO: Add how to check if autoscaler is working ...
