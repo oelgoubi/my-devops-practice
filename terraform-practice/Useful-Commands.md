@@ -8,3 +8,6 @@
 
 # After creating eks cluster, you need to create a kubeconfig file to use kubectl to interact with the cluster
 - aws eks --region <region> update-kubeconfig --name <cluster-name> --profile <profile-name>
+
+# IAM role in EKS
+[text](https://www.youtube.com/watch?v=EGdN21F2Jfw)

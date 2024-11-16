@@ -1,0 +1,5 @@
+- Packer
+- HashiCorp Vault
+- K8s Addons
+- Monitoring Tools (Prometheus, Grafana)
+- CI/CD

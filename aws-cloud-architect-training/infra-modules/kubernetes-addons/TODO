@@ -1,0 +1,5 @@
+
+- Setup Node Group AutoScaler
+
+- Setup Nginx Ingress Controller : Creating it will create a Network Load Balancer ( Layer 4 ) on the cloud. This Load Balancer will be used toi route every request sent to our application.
+When we create an ingress object to expose our app, that object is parsed and converted  by the Ingress Controller into the Native Nginx Configuration. So when the request comes from the LB, the inginx will act as a reverse proxy and based on the the routes defined in Nginxn the request will be routed to a specific application
